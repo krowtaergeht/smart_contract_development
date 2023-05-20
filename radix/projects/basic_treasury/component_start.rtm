@@ -1,0 +1,12 @@
+# Lock the fees for the transaction
+CALL_METHOD Address("${account_address}") "lock_fee" Decimal("${fee_amount}");
+
+# Instantiate the Treasury blueprint
+CALL_FUNCTION
+     Address("${package_address}") "Treasury" "instantiate_treasury";
+
+# Deposit the xrd back into the user's account
+CALL_METHOD
+  Address("${account_address}")
+  "deposit_batch"
+  Expression("ENTIRE_WORKTOP");

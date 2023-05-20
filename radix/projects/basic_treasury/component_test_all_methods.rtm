@@ -1,0 +1,23 @@
+# Lock the fees for the transaction
+CALL_METHOD Address("${account_address}") "lock_fee" Decimal("${fee_amount}");
+
+# Call the add_token method
+CALL_METHOD Address("${component_address}") "add_token" "token_name" Address("${token_resource_address}"); 
+
+# Call the add_to_deposit_whitelist method
+CALL_METHOD Address("${component_address}") "add_to_deposit_whitelist" "entity_name" Address("${component_address}"); 
+
+# Call the balances method
+CALL_METHOD Address("${component_address}") "balances" "token_name"; 
+
+# Call the remove_from_whitelist method
+CALL_METHOD Address("${component_address}") "remove_from_whitelist" "entity_name" Address("${component_address}");
+
+# Call the request_component_address method
+CALL_METHOD Address("${component_address}") "request_component_address";
+
+# Deposit the xrd back into the user's account
+CALL_METHOD
+  Address("${account_address}")
+  "deposit_batch"
+  Expression("ENTIRE_WORKTOP");
